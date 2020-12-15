@@ -1,6 +1,6 @@
-import { MusicEntity } from "./musical";
+import { Musical } from "./musical";
 
-export interface Album extends MusicEntity{
+export interface Album extends Musical{
     // title: string;
     // coverUrl: string;
     year: Date;

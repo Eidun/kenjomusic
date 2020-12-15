@@ -1,12 +1,8 @@
 <kenjo-musical-search></kenjo-musical-search>
 <ul>
-    <li>Music1</li>
-    <li>Music2</li>
-    <li>Music3</li>
-    <li>Music4</li>
-    <li>Music5</li>
+    <li *ngFor="let musical of musicals| slice: (page-1) * pageSize : page * pageSize">Music1</li>
 </ul>
 <ngb-pagination
   [(page)]="page"
-  [pageSize]="2"
-  [collectionSize]="5"></ngb-pagination>
+  [pageSize]="pageSize"
+  [collectionSize]="musicals.length"></ngb-pagination>

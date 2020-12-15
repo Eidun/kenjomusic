@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MusicalListComponent } from './components/musical-list/musical-list.component';
 import { MusicalSearchComponent } from './components/musical-search/musical-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule
   ],
