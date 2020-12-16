@@ -8,16 +8,22 @@ import { MusicalListComponent } from './components/musical-list/musical-list.com
 import { MusicalSearchComponent } from './components/musical-search/musical-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { MusicalComponent } from './components/musical/musical.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MusicalListComponent,
-    MusicalSearchComponent
+    MusicalSearchComponent,
+    MusicalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule

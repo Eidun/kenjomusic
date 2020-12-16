@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
 import { Musical } from 'src/app/models/musical';
-import { MusicalService } from 'src/app/services/musical.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'kenjo-musical-list',
   templateUrl: './musical-list.component.html',
   styleUrls: ['./musical-list.component.scss']
 })
-export class MusicalListComponent implements OnInit {
+export class MusicalListComponent {
   
-  page = 1;
-  pageSize = 6;
-  
-  musicals: Musical[] = [];
+  page: number = 1;
+  pageSize: number = 9;
 
-  constructor(private musicalService: MusicalService) { }
-  
-  ngOnInit(): void {
-    this.musicalService.getMusicals().subscribe(musicals => {
-      this.musicals = musicals;
-      console.log(this.musicals);
-    });
+  musicals: Musical[] = [];
+  loading: boolean = true;
+
+  showMusicals(musicals: Musical[]) {
+    this.musicals = musicals;
+    this.loading = false;
   }
 
 }

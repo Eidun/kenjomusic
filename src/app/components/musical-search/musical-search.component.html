@@ -1,2 +1,28 @@
-<input type="text"/>
-<button>More</button>
+<form [formGroup]="searchForm">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-10 d-inline">
+                <input type="text" placeholder="Search by name..." formControlName="searchName" class="form-control-lg w-100 search-bar" />
+            </div>
+            <div class="col-2 d-inline">
+                <button (click)="showExtraFilters=!showExtraFilters" type="button" class="form-control btn btn-extra-filters border">
+                    <img class="img-fluid" src="assets/more.png"/>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showExtraFilters" class="form-group">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <label class="btn btn-dark">
+                <input type="radio" value="" name="type" formControlName="type"> Any
+            </label>
+            <label class="btn btn-dark">
+                <input type="radio" value="Album" name="type" formControlName="type"> Albums
+            </label>
+            <label class="btn btn-dark">
+                <input type="radio" value="Artist" name="type" formControlName="type"> Artists
+            </label>
+          </div>
+    </div>
+</form>

@@ -1,8 +1,24 @@
-<kenjo-musical-search></kenjo-musical-search>
-<ul>
-    <li *ngFor="let musical of musicals| slice: (page-1) * pageSize : page * pageSize">Music1</li>
-</ul>
-<ngb-pagination
+<div class="row justify-content-md-center">
+  <div class="col-lg-8 p-3 col-sm-10">
+  <kenjo-musical-search (musicals)="showMusicals($event)"></kenjo-musical-search>
+  </div>
+</div>
+<div class="row" *ngIf="!loading">
+    <div class="col-sm-12 p-3" [class.col-lg-4]="musicals.length >= 3" [class.col-md-6]="musicals.length >= 2"
+      *ngFor="let musical of musicals| slice: (page-1) * pageSize : page * pageSize">
+      <kenjo-musical [musical]="musical"></kenjo-musical>
+    </div>
+</div>
+<div *ngIf="loading" class="row">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-md-center">
+  <ngb-pagination
   [(page)]="page"
   [pageSize]="pageSize"
   [collectionSize]="musicals.length"></ngb-pagination>
+</div>

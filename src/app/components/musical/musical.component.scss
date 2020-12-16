@@ -1,0 +1,17 @@
+.musical-card {
+  max-width: 500px;
+  max-width: 500px;
+}
+.zoom {
+    transition: transform .2s;
+  }
+  
+.zoom:hover {
+    transform: scale(1.1);
+}
+
+.card-image {
+  height: auto;
+  width: auto;
+  overflow: hidden;
+}

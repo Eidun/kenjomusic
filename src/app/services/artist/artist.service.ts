@@ -22,7 +22,8 @@ export class ArtistService {
       imageUrl: artist.photoUrl,
       name: artist.name,
       birthDate: artist.birthdate,
-      deathDate: artist.deathDate
+      deathDate: artist.deathDate,
+      type: 'Artist'
     };
   });
 
