@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="row" *ngIf="!loading">
-    <div class="col-sm-12 p-3" [class.col-lg-4]="musicals.length >= 3" [class.col-md-6]="musicals.length >= 2"
+    <div class="col-sm-12 col-lg-4 col-md-6 p-3"
       *ngFor="let musical of musicals| slice: (page-1) * pageSize : page * pageSize">
       <kenjo-musical [musical]="musical"></kenjo-musical>
     </div>

@@ -12,20 +12,7 @@ export class AlbumService {
   constructor(private http: HttpClient) { }
 
   getAlbums() : Observable<Album[]> {
-    return this.http.get('/albums/all').pipe(first(), map(res => this.mapToAlbum(res as any[])));
+    return this.http.get('/albums/all').pipe(first(), map((albums: any[]) => albums.map(album => new Album(album))));
   }
 
-  private mapToAlbum(albums: any[]): Album[] {
-    return albums.map(album => {
-        return {
-          id: album._id,
-          imageUrl: album.coverUrl,
-          name: album.title,
-          genre: album.genre,
-          year: album.year,
-          artistId: album.artistId,
-          type: 'Album'
-        };
-    });
-  }
 }

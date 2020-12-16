@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MusicalComponent } from './components/musical/musical.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MusicalModalComponent } from './components/musical-modal/musical-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MusicalListComponent,
     MusicalSearchComponent,
     MusicalComponent,
-    FooterComponent
+    FooterComponent,
+    MusicalModalComponent
   ],
   imports: [
     BrowserModule,
