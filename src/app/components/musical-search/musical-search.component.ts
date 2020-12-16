@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { MusicalService } from 'src/app/services/musical.service';
+import { Musical } from 'src/app/models/musical';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Musical } from 'src/app/models/musical';
-import { MusicalService } from 'src/app/services/musical.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -17,11 +17,13 @@ export class MusicalSearchComponent implements OnInit {
 
   searchForm: FormGroup;
   showExtraFilters: boolean = false;
+  artistFilter: boolean = false;
+  albumFilter: boolean = false;
 
   constructor(private musicalService: MusicalService, private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       searchName: [''],
-      type: ['Album']
+      type: ['']
     })
    }
   

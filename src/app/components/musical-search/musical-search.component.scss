@@ -11,8 +11,27 @@
 
     transition: 0.2s;
     &:hover, &:focus {
-        transform: scale(1.1);
+        transform: scale(1.05);
         box-shadow: 0 0 0 3px black;
     }
 }
+
+input[type="radio"] {
+  display: none;
+  &:active+.radio-label {
+    background-color: cornflowerblue;
+}
+}
+
+.radio-label {
+    &:hover {
+        background-color: darkcyan;
+    }  
+}
+
+.radio-label-active {
+    background-color: cornflowerblue;
+}
+
+
 
