@@ -1,35 +1,95 @@
 <div class="modal-header">
-    <!-- <h4 class="modal-title">{{musical.name}}</h4> -->
-    <h4 class="modal-title text-white">{{musical.type}}</h4>
+    <h4 class="modal-title text-white font-weight-bold">{{musical.type}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-6">
-                <img class="card-modal-image" [src]="musical.imageUrl" alt="...">
-            </div>
-            <div class="col-6">
-                <form [formGroup]="musicalForm">
+        <form [formGroup]="musicalForm">       
+            <div class="row d-flex justify-content-center">
+                <div class="col-6">
+                    <img class="card-modal-image" [src]="musicalForm.value.image" alt="...">
+                </div>
+                <div class="col-6">
                     <div class="form-group">
-                        <label for="musicalName">Name</label>
-                        <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalName" formControlName="name" placeholder="Enter the name">
+                        <label class="font-weight-bold" for="musicalName">Name*</label>
+                        <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalName"
+                            formControlName="name" placeholder="Enter the name...">
+                        <small *ngIf="isEditMode && musicalForm.controls.name.errors" class="text-danger">
+                            The name is required
+                        </small>      
                     </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="musicalImage">Image URL</label>
+                        <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalImage"
+                            formControlName="image" placeholder="Enter the URL...">   
+                    </div>
                 </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
             </div>
-        </div>
+            <ng-container *ngIf="musical.type === 'Album'">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="musicalYear">Year</label>
+                            <input [readonly]="!isEditMode" type="tel" maxlength="4" class="form-control" id="musicalYear"
+                                formControlName="year" placeholder="Enter the year...">
+                            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('pattern')" class="text-danger">
+                                Only numbers allowed
+                            </small>
+                            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('min')" class="text-danger">
+                                Mininum year is 1900
+                            </small>
+                            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('max')" class="text-danger">
+                                Slow down, Time Traveller!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="musicalGenre">Genre</label>
+                            <select class="custom-select" formControlName="genre" id="musicalGenre">
+                                <option selected value="">Choose an option...</option>
+                                <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-top pt-2 d-flex align-items-center">
+                    <div class="col-8">
+                        <div class="form-row">
+                            <div class="col-9">
+
+                                <label class="font-weight-bold" for="musicalArtistName">Artist</label>
+                                <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalArtistName"
+                                formControlName="artistName" placeholder="Enter the artist name...">
+                                <small *ngIf="isEditMode && musicalForm.controls.name.errors" class="text-danger">
+                                    Artist does not exist with that Name
+                                </small>
+                            </div>
+                            <div class="pl-1 col-2">
+                                <button *ngIf="isEditMode" (click)="searchArtist()" type="button" class="form-control align-self-end btn btn-edit border">
+                                    <img class="img-fluid" src="assets/search.svg"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="musical['artist']" class="col-4">
+                        <img class="card-modal-image-artist" [src]="musical['artist'].imageUrl" alt="...">
+                    </div>
+                </div>
+            </ng-container>    
+        </form>
     </div>
 </div>
 <div class="modal-footer">
+    <button *ngIf="!isEditMode" (click)="editMode()" type="button" class="form-control btn btn-edit border">
+        <img class="img-fluid" src="assets/edit.svg"/>
+    </button>
+    <button *ngIf="isEditMode" [disabled]="!musicalForm.valid" (click)="readMode()" type="button" class="form-control btn btn-edit border">
+        <img class="img-fluid" src="assets/save.svg"/>
+    </button>
+    <button *ngIf="isEditMode" (click)="editMode()" type="button" class="form-control btn btn-edit border">
+        <img class="img-fluid" src="assets/trash.png"/>
+    </button>
 </div>

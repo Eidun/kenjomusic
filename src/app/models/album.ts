@@ -12,9 +12,9 @@ export class Album extends Musical{
         super(album);
         this.name = album.title;
         this.imageUrl = album.coverUrl;
-        this.genre = album.genre;
         this.year = album.year;
         this.artistId = album.artistId;
+        this.genre = album.genre;
         this.type = 'Album';
     }
 
@@ -31,7 +31,8 @@ export class Album extends Musical{
 export enum Genres {
     POP = 'Pop',
     ROCK = 'Rock',
+    METAL ='Metal',
     COUNTRY = 'Country',
     TECHNO = 'Techno',
-    OTHERS = 'Others'
+    OTHER = 'Other'
 }
