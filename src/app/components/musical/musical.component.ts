@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Musical } from 'src/app/models/musical';
 import { MusicalModalComponent } from '../musical-modal/musical-modal.component';
 
@@ -12,9 +12,13 @@ export class MusicalComponent {
 
   @Input() musical: Musical;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private configModal: NgbModalConfig) {
+    // Prevents modal close on backdrop click
+    this.configModal.backdrop = 'static';
+  }
 
   openModal() {
-    this.modalService.open(MusicalModalComponent);
+    const modal = this.modalService.open(MusicalModalComponent);
+    modal.componentInstance.musical = this.musical;
   }
 }
