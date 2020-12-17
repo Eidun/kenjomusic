@@ -55,27 +55,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="row border-top pt-2 d-flex align-items-center">
+                <div class="row border-top pt-2">
                     <div class="col-8">
-                        <div class="form-row">
-                            <div class="col-9">
-
+                        <div class="row input-group d-flex">
+                            <div class="col">
                                 <label class="font-weight-bold" for="musicalArtistName">Artist</label>
                                 <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalArtistName"
                                 formControlName="artistName" placeholder="Enter the artist name...">
-                                <small *ngIf="isEditMode && musicalForm.controls.name.errors" class="text-danger">
-                                    Artist does not exist with that Name
+                                <small *ngIf="isEditMode && musicalForm.controls.artistName.hasError('noResults')" class="text-danger">
+                                    No Artist does exist with that name
                                 </small>
-                            </div>
-                            <div class="pl-1 col-2">
-                                <button *ngIf="isEditMode" (click)="searchArtist()" type="button" class="form-control align-self-end btn btn-edit border">
+                                <small *ngIf="isEditMode && musicalForm.controls.artistName.hasError('tooManyResults')" class="text-danger">
+                                    Please be more specific
+                                </small>
+                                <button *ngIf="isEditMode" (click)="searchArtist()" type="button" class="form-control float-right btn btn-edit border mt-1">
                                     <img class="img-fluid" src="assets/search.svg"/>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="musical['artist']" class="col-4">
-                        <img class="card-modal-image-artist" [src]="musical['artist'].imageUrl" alt="...">
+                    <div *ngIf="artistImageUrl" class="col-4">
+                        <img class="card-modal-image-artist" [src]="artistImageUrl" alt="...">
                     </div>
                 </div>
             </ng-container>    

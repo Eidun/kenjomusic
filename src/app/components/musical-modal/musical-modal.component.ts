@@ -4,6 +4,7 @@ import { ArtistService } from 'src/app/services/artist/artist.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Artist } from 'src/app/models/artist';
 
 @Component({
   selector: 'kenjo-musical-modal',
@@ -21,7 +22,8 @@ export class MusicalModalComponent implements OnInit {
 
   private ONLY_NUMBERS_REGEX = /^[0-9]*$/;
 
-  private albums: Album[];
+  private artists: Artist[];
+  artistImageUrl: string;
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private artistService: ArtistService) {}
 
@@ -32,7 +34,7 @@ export class MusicalModalComponent implements OnInit {
     this.initializeForm();
 
     this.artistService.getArtists().subscribe(artists => {
-      console.log(artists);
+      this.artists = artists;
     })
   }
 
@@ -60,6 +62,8 @@ export class MusicalModalComponent implements OnInit {
 
     this.musicalForm.addControl('genre', this.fb.control({value: album.genre || '', disabled: !this.isEditMode}));
     this.musicalForm.addControl('artistName', this.fb.control(album.artist?.name || ''));
+
+    this.artistImageUrl = album.artist?.imageUrl;
   }
 
   private initializeArtistForm() {
@@ -77,7 +81,20 @@ export class MusicalModalComponent implements OnInit {
   }
 
   searchArtist() {
-    
+    const artistName: string = this.musicalForm.value.artistName;
+    const artists = this.artists.filter(artist => artist.name.toLowerCase().includes(artistName.toLowerCase()));
+    if (artists.length === 0) {
+      this.musicalForm.controls.artistName.setErrors({noResults: true});
+    }
+    if (artists.length === 1) {
+      const artist = artists[0];
+      this.musicalForm.controls.artistName.setValue(artist.name);
+      this.artistImageUrl = artist.imageUrl;
+         
+    }
+    if (artists.length > 1) {
+      this.musicalForm.controls.artistName.setErrors({tooManyResults: true});
+    }
   }
 
 }
