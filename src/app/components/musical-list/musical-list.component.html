@@ -4,10 +4,17 @@
   </div>
 </div>
 <div class="row" *ngIf="!loading">
+  <ng-container *ngIf="musicals.length > 0">
     <div class="col-sm-12 col-lg-4 col-md-6 p-3"
       *ngFor="let musical of musicals| slice: (page-1) * pageSize : page * pageSize">
-      <kenjo-musical [musical]="musical"></kenjo-musical>
-    </div>
+    <kenjo-musical [musical]="musical"></kenjo-musical>
+  </div>
+</ng-container>
+<ng-container *ngIf="musicals.length === 0">
+  <div class="col ml-6 p-3 justify-self-center">
+    <h1 class="display-5 text-center">No results</h1>
+  </div>
+</ng-container>
 </div>
 <div *ngIf="loading" class="row">
   <div class="d-flex justify-content-center">

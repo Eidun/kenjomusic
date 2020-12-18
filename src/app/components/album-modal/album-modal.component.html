@@ -45,8 +45,8 @@
             </div>
         </div>
     </div>
-    <div *ngIf="artistImageUrl" class="col-4">
-        <img class="card-modal-image-artist" [src]="artistImageUrl" alt="...">
+    <div *ngIf="musicalForm.value.artist" class="col-4">
+        <img class="card-modal-image-artist" [src]="artistImageUrl || 'assets/noimage.png'" alt="...">
     </div>
 </div>
 </ng-container>

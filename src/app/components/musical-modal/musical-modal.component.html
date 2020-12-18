@@ -9,14 +9,14 @@
         <form [formGroup]="musicalForm">       
             <div class="row d-flex justify-content-center">
                 <div class="col-6">
-                    <img class="card-modal-image" [src]="musicalForm.value.image" alt="...">
+                    <img class="card-modal-image" [src]="musicalForm.value.image || 'assets/noimage.png'" alt="...">
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="font-weight-bold" for="musicalName">Name*</label>
                         <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalName"
                             formControlName="name" placeholder="Enter the name...">
-                        <small *ngIf="isEditMode && musicalForm.controls.name.errors" class="text-danger">
+                        <small *ngIf="isEditMode && musicalForm.controls.name.touched && musicalForm.controls.name.errors" class="text-danger">
                             The name is required
                         </small>      
                     </div>

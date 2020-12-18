@@ -1,5 +1,5 @@
 <div (click)="openModal()" class="card d-flex zoom border border-dark  bg-dark musical-card">
-    <img class="card-image" [src]="musical.imageUrl" alt="...">
+    <img class="card-image" [src]="musical.imageUrl || 'assets/noimage.png'" alt="...">
     <div class="row">
         <div class="col-7 ml-1 mt-1 d-flex align-items-center">
             <p class="text-left font-weight-bold text-white">{{musical.name}}</p>
