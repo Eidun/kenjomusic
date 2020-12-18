@@ -1,11 +1,11 @@
+import { Injectable } from '@angular/core';
+import { Observable, zip } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Album } from '../models/album';
+import { Artist } from '../models/artist';
 import { Musical } from '../models/musical';
 import { AlbumService } from './album/album.service';
 import { ArtistService } from './artist/artist.service';
-import { Observable, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { Album } from '../models/album';
-import { Artist } from '../models/artist';
 
 @Injectable({
   providedIn: 'root'

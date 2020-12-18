@@ -1,8 +1,8 @@
-import { Artist } from 'src/app/models/artist';
-import { ArtistService } from 'src/app/services/artist/artist.service';
-import { Album, Genres } from 'src/app/models/album';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Album, Genres } from 'src/app/models/album';
+import { Artist } from 'src/app/models/artist';
+import { ArtistService } from 'src/app/services/artist/artist.service';
 import { SegmentModalComponent } from '../segment-modal/segment-modal.component';
 
 @Component({

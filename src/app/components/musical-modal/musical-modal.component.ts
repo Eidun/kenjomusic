@@ -1,10 +1,10 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Musical } from 'src/app/models/musical';
 import { MusicalService } from 'src/app/services/musical.service';
-import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { RefreshService } from 'src/app/services/refresh.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'kenjo-musical-modal',

@@ -1,8 +1,8 @@
-import { Album } from 'src/app/models/album';
-import { Observable } from 'rxjs';
-import { map, first, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { first, map, shareReplay } from 'rxjs/operators';
+import { Album } from 'src/app/models/album';
 
 @Injectable({
   providedIn: 'root'

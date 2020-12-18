@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { SegmentModalComponent } from '../segment-modal/segment-modal.component';
-import { Artist } from 'src/app/models/artist';
 import { formatDate } from '@angular/common';
-import { LOCALE_ID, Inject } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Artist } from 'src/app/models/artist';
+import { SegmentModalComponent } from '../segment-modal/segment-modal.component';
 import { dateValidator } from './validators';
 
 @Component({

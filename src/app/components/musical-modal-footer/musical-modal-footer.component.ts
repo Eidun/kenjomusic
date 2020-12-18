@@ -1,7 +1,4 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Form, FormGroup } from "@angular/forms";
-import { Album } from "src/app/models/album";
-import { Musical } from "src/app/models/musical";
 
 @Component({
   selector: 'kenjo-musical-modal-footer',

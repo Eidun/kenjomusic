@@ -1,8 +1,8 @@
-import { Artist } from 'src/app/models/artist';
-import { Observable } from 'rxjs';
-import { map, first, shareReplay } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { first, map, shareReplay } from 'rxjs/operators';
+import { Artist } from 'src/app/models/artist';
 
 @Injectable({
   providedIn: 'root'

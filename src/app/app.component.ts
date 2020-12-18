@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AlbumService } from './services/album/album.service';
-import { ArtistService } from './services/artist/artist.service';
 import { MusicalService } from './services/musical.service';
 
 @Component({

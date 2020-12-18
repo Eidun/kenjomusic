@@ -1,5 +1,5 @@
-import { Musical } from 'src/app/models/musical';
 import { Component } from '@angular/core';
+import { Musical } from 'src/app/models/musical';
 
 @Component({
   selector: 'kenjo-musical-list',

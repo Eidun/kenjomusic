@@ -1,10 +1,10 @@
-import { Album, Genres } from 'src/app/models/album';
-import { MusicalService } from 'src/app/services/musical.service';
-import { Musical } from 'src/app/models/musical';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Album, Genres } from 'src/app/models/album';
+import { Musical } from 'src/app/models/musical';
+import { MusicalService } from 'src/app/services/musical.service';
 import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
