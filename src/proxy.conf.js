@@ -9,8 +9,7 @@ const PROXY_CONFIG = [
             "/artists",
             "/artist"
         ],
-        target: LOCALHOST_URL,
-        logLevel: "debug"
+        target: LOCALHOST_URL
     }
 ]
 
