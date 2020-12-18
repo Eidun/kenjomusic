@@ -1,0 +1,9 @@
+.btn-add {
+    background-color: cornflowerblue;
+    transition: 0.2s;
+    &:hover {
+        background-color: darkcyan;
+        transform: scale(1.15);
+        box-shadow: 0 0 0 3px black;
+    }
+}
