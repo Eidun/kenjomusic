@@ -1,3 +1,5 @@
+import { FormGroup } from "@angular/forms";
+
 export abstract class Musical {
     id: string;
     imageUrl: string;
@@ -10,7 +12,15 @@ export abstract class Musical {
 
     hasName(name: string) {
         return this.name.toLowerCase().includes(name.toLowerCase()) || this.hasRelatedName(name);
-     }
+    }
+
+    updateValuesWithForm(musicalForm: FormGroup) {
+        this.name = musicalForm.value.name;
+        this.imageUrl = musicalForm.value.image;
+        this.updateOwnValuesWithForm(musicalForm);
+    }
+
+    protected abstract updateOwnValuesWithForm(musicalForm: FormGroup)
 
     protected abstract hasRelatedName(name: string);
 } 

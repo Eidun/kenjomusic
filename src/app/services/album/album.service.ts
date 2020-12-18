@@ -34,4 +34,10 @@ export class AlbumService {
     return this.http.put('/album/' + album.id, album.convertToJSON()).pipe(first(), map(album => new Album(album)));
   }
 
+  deleteAlbum(artist: Album): Observable<any> {
+    //Clean cache
+    this.albums = null;
+    return this.http.delete('/album/' + artist.id).pipe(first());
+  }
+
 }

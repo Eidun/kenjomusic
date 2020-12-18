@@ -1,7 +1,9 @@
+import { FormGroup } from "@angular/forms";
 import { Artist } from "./artist";
 import { Musical } from "./musical";
 
 export class Album extends Musical{
+   
 
     year: Date;
     genre: Genres;
@@ -28,6 +30,12 @@ export class Album extends Musical{
 
     protected hasRelatedName(name: string) {
         return this.artist && this.artist.name.toLowerCase().includes(name.toLowerCase())
+    }
+
+    protected updateOwnValuesWithForm(albumForm: FormGroup) {
+        this.year = albumForm.value.year;
+        this.genre = albumForm.value.genre;
+        this.linkArtist(albumForm.value.artist)
     }
 
     convertToJSON() {

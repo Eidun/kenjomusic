@@ -1,9 +1,9 @@
 import { Musical } from 'src/app/models/musical';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Album } from 'src/app/models/album';
 import { MusicalService } from 'src/app/services/musical.service';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'kenjo-musical-modal',
@@ -18,7 +18,12 @@ export class MusicalModalComponent implements OnInit {
   musicalForm: FormGroup;
   isEditMode: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private musicalService: MusicalService) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private fb: FormBuilder,
+    private musicalService: MusicalService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     if (!this.musical.id) {
@@ -35,21 +40,21 @@ export class MusicalModalComponent implements OnInit {
   }
 
   save() {
-    this.musical.name = this.musicalForm.value.name;
-    this.musical.imageUrl = this.musicalForm.value.image;
-    if (this.musical.type === 'Album') {
-      const album = this.musical as Album;
-      album.year = this.musicalForm.value.year;
-      album.genre = this.musicalForm.value.genre;
-      album.linkArtist(this.musicalForm.value.artist)
-      this.musicalService.saveAlbum(album).subscribe(savedAlbum => {
-        if (!album.artistId) {
+    this.musical.updateValuesWithForm(this.musicalForm); 
+    this.musicalService.saveMusical(this.musical).subscribe(musical => {
+      musical.id = musical.id;
+      this.readMode();
+    });
+  }
 
-        }
-        album.id = savedAlbum.id;
-        this.readMode();
+  delete() {
+    const modal = this.modalService.open(DeleteModalComponent);
+    modal.componentInstance.musical = this.musical;
+    modal.componentInstance.delete.subscribe(() => {
+      this.musicalService.deleteMusical(this.musical).subscribe(() => {
+        this.activeModal.dismiss();
       });
-    }
+    });
   }
 
   editMode() {

@@ -20,4 +20,22 @@ export class ArtistService {
     return this.artists;
   }
 
+  createArtist(artist: Artist): Observable<Artist> {
+    //Clean cache
+    this.artists = null;
+    return this.http.post('/artist', artist.convertToJSON()).pipe(first(), map(album => new Artist(album)));
+  }
+
+  updateArtist(artist: Artist): Observable<Artist> {
+    //Clean cache
+    this.artists = null;
+    return this.http.put('/artist/' + artist.id, artist.convertToJSON()).pipe(first(), map(album => new Artist(album)));
+  }
+
+  deleteArtist(artist: Artist): Observable<any> {
+    //Clean cache
+    this.artists = null;
+    return this.http.delete('/artist/' + artist.id).pipe(first());
+  }
+
 }

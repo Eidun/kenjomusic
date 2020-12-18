@@ -24,11 +24,36 @@ export class MusicalService {
     return musicals;
   }
 
-  saveAlbum(album: Album): Observable<Album> {
+  saveMusical(musical: Musical): Observable<Musical> {
+    if (musical.type === 'Album') {
+      return this.saveAlbum(musical as Album);
+    } else {
+      return this.saveArtist(musical as Artist);
+    }
+  }
+
+  deleteMusical(musical: Musical) {
+    if (musical.type === 'Album') {
+      return this.albumService.deleteAlbum(musical as Album);
+    } else {
+      return this.artistService.deleteArtist(musical as Artist);
+      
+    }
+  }
+
+  private saveAlbum(album: Album): Observable<Album> {
     if (album.id) {
       return this.albumService.updateAlbum(album);
     } else {
       return this.albumService.createAlbum(album);
+    }
+  }
+
+  private saveArtist(artist: Artist) {
+    if (artist.id) {
+      return this.artistService.updateArtist(artist);
+    } else {
+      return this.artistService.createArtist(artist);
     }
   }
 

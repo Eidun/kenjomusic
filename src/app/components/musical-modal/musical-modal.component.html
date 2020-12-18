@@ -30,8 +30,11 @@
             <ng-container *ngIf="musical.type === 'Album'">
                 <kenjo-album-modal [musical]="musical" [musicalForm]="musicalForm" [isEditMode]="isEditMode"></kenjo-album-modal>
             </ng-container>
+            <ng-container *ngIf="musical.type === 'Artist'">
+                <kenjo-artist-modal [musical]="musical" [musicalForm]="musicalForm" [isEditMode]="isEditMode"></kenjo-artist-modal>
+            </ng-container>
         </form>
     </div>
 </div>
-<kenjo-musical-modal-footer [isEditMode]="isEditMode" [disabled]="!musicalForm.valid" (save)="save()" (edit)="editMode()">
+<kenjo-musical-modal-footer [isEditMode]="isEditMode" [disabled]="!musicalForm.valid" (save)="save()" (edit)="editMode()" (delete)="delete()">
 </kenjo-musical-modal-footer>

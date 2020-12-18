@@ -1,20 +1,16 @@
 import { Artist } from 'src/app/models/artist';
 import { ArtistService } from 'src/app/services/artist/artist.service';
 import { Album, Genres } from 'src/app/models/album';
-import { Musical } from 'src/app/models/musical';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { SegmentModalComponent } from '../segment-modal/segment-modal.component';
 
 @Component({
   selector: 'kenjo-album-modal',
   templateUrl: './album-modal.component.html',
   styleUrls: ['./album-modal.component.scss']
 })
-export class AlbumModalComponent implements OnInit {
-
-  @Input() musical: Musical;
-  @Input() musicalForm: FormGroup;
-  @Input() isEditMode: boolean;
+export class AlbumModalComponent extends SegmentModalComponent implements OnInit {
   
   private artists: Artist[];
   artistImageUrl: string;
@@ -23,7 +19,9 @@ export class AlbumModalComponent implements OnInit {
   
   private ONLY_NUMBERS_REGEX = /^[0-9]*$/;
 
-  constructor(private fb: FormBuilder, private artistService: ArtistService) { }
+  constructor(private fb: FormBuilder, private artistService: ArtistService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.artistService.getArtists().subscribe(artists => {
