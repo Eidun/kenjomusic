@@ -1,9 +1,10 @@
 import { Musical } from 'src/app/models/musical';
+import { MusicalService } from 'src/app/services/musical.service';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { RefreshService } from 'src/app/services/refresh.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicalService } from 'src/app/services/musical.service';
-import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'kenjo-musical-modal',
@@ -22,6 +23,7 @@ export class MusicalModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private musicalService: MusicalService,
+    private refreshService: RefreshService,
     private modalService: NgbModal
   ) {}
 
@@ -43,6 +45,7 @@ export class MusicalModalComponent implements OnInit {
     this.musical.updateValuesWithForm(this.musicalForm); 
     this.musicalService.saveMusical(this.musical).subscribe(musical => {
       musical.id = musical.id;
+      this.refreshService.refresh();
       this.readMode();
     });
   }
@@ -52,7 +55,8 @@ export class MusicalModalComponent implements OnInit {
     modal.componentInstance.musical = this.musical;
     modal.componentInstance.delete.subscribe(() => {
       this.musicalService.deleteMusical(this.musical).subscribe(() => {
-        this.activeModal.dismiss();
+      this.refreshService.refresh();
+      this.activeModal.dismiss();
       });
     });
   }

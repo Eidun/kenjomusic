@@ -1,10 +1,11 @@
 import { Album, Genres } from 'src/app/models/album';
 import { MusicalService } from 'src/app/services/musical.service';
 import { Musical } from 'src/app/models/musical';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'kenjo-musical-search',
@@ -22,7 +23,13 @@ export class MusicalSearchComponent implements OnInit {
 
   genres: string[] = Object.values(Genres);
 
-  constructor(private musicalService: MusicalService, private fb: FormBuilder) {
+  musicalsSubscription: Subscription;
+
+  constructor(
+    private musicalService: MusicalService,
+    private refreshService: RefreshService,
+    private fb: FormBuilder
+    ) {
     this.searchForm = this.fb.group({
       searchName: [''],
       type: [''],
@@ -31,19 +38,22 @@ export class MusicalSearchComponent implements OnInit {
    }
   
   ngOnInit(): void {
-    this.loadMusicals();
-    this.searchForm.controls.searchName.setValue('');
+    this.refreshService.waitRefresh().subscribe(() => this.loadMusicals());
+    this.refreshService.refresh();
   }
 
   private loadMusicals() {
-    const filteredMusicals = combineLatest([this.musicalService.getMusicals(), this.searchForm.valueChanges])
-    .pipe(map(([musicals, searchFilters]) => 
-       this.applyFilters(musicals, searchFilters)
-    ));
+    if (this.musicalsSubscription) {
+      this.musicalsSubscription.unsubscribe();
+    }
 
-    filteredMusicals.subscribe(musicals => {
-      this.musicals.emit(musicals);
+    this.musicalsSubscription = combineLatest([this.musicalService.getMusicals(), this.searchForm.valueChanges])
+      .pipe(map(([musicals, searchFilters]) => this.applyFilters(musicals, searchFilters)
+      )).subscribe(musicals => {
+        this.musicals.emit(musicals);
     });
+
+    this.searchForm.controls.searchName.setValue(this.searchForm.value.searchName);
   }
 
   private applyFilters(musicals: Musical[], filters): Musical[] {
