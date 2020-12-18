@@ -24,6 +24,14 @@ export class MusicalService {
     return musicals;
   }
 
+  saveAlbum(album: Album): Observable<Album> {
+    if (album.id) {
+      return this.albumService.updateAlbum(album);
+    } else {
+      return this.albumService.createAlbum(album);
+    }
+  }
+
   private linkMusicals(albums: Album[], artists: Artist[]) {
     albums.filter(album => album.artistId).forEach(album => {
       const creatorArtist = artists.find(artist => artist.id === album.artistId);

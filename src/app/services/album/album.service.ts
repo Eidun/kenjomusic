@@ -22,4 +22,16 @@ export class AlbumService {
     return this.albums
   }
 
+  createAlbum(album: Album): Observable<Album> {
+    //Clean cache
+    this.albums = null;
+    return this.http.post('/album', album.convertToJSON()).pipe(first(), map(album => new Album(album)));
+  }
+
+  updateAlbum(album: Album): Observable<Album> {
+    //Clean cache
+    this.albums = null;
+    return this.http.put('/album/' + album.id, album.convertToJSON()).pipe(first(), map(album => new Album(album)));
+  }
+
 }
