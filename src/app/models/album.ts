@@ -19,12 +19,25 @@ export class Album extends Musical{
     }
 
     linkArtist(artist: Artist) {
-        this.artist = artist;
-        artist.albums.push(this);
+        if (artist) {
+            this.artist = artist;
+            this.artistId = artist.id;
+            artist.albums.push(this);
+        }
     }
 
     protected hasRelatedName(name: string) {
         return this.artist && this.artist.name.toLowerCase().includes(name.toLowerCase())
+    }
+
+    convertToJSON() {
+        const json: any = {};
+        json._id = this.id;
+        json.title = this.name;
+        json.coverUrl = this.imageUrl;
+        json.genre = this.genre;
+        json.artistId = this.artistId;
+        return json;
     }
 }
 

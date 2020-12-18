@@ -1,0 +1,52 @@
+<ng-container [formGroup]="musicalForm">
+<div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            <label class="font-weight-bold" for="musicalYear">Year</label>
+            <input [readonly]="!isEditMode" type="tel" maxlength="4" class="form-control" id="musicalYear"
+                formControlName="year" placeholder="Enter the year...">
+            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('pattern')" class="text-danger">
+                Only numbers allowed
+            </small>
+            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('min')" class="text-danger">
+                Mininum year is 1900
+            </small>
+            <small *ngIf="isEditMode && musicalForm.controls.year.hasError('max')" class="text-danger">
+                Slow down, Time Traveller!
+            </small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label class="font-weight-bold" for="musicalGenre">Genre</label>
+            <select class="custom-select" formControlName="genre" id="musicalGenre">
+                <option selected value="">Choose an option...</option>
+                <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row border-top pt-2">
+    <div class="col-8">
+        <div class="row input-group d-flex">
+            <div class="col">
+                <label class="font-weight-bold" for="musicalArtistName">Artist</label>
+                <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalArtistName"
+                formControlName="artistName" placeholder="Enter the artist name...">
+                <small *ngIf="isEditMode && musicalForm.controls.artistName.hasError('noResults')" class="text-danger">
+                    No Artist does exist with that name
+                </small>
+                <small *ngIf="isEditMode && musicalForm.controls.artistName.hasError('tooManyResults')" class="text-danger">
+                    Please be more specific
+                </small>
+                <button *ngIf="isEditMode" (click)="searchArtist()" type="button" class="form-control float-right btn btn-kenjo border mt-1">
+                    <img class="img-fluid" src="assets/search.svg"/>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="artistImageUrl" class="col-4">
+        <img class="card-modal-image-artist" [src]="artistImageUrl" alt="...">
+    </div>
+</div>
+</ng-container>

@@ -5,8 +5,6 @@ import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Artist } from 'src/app/models/artist';
-
 
 @Component({
   selector: 'kenjo-musical-search',
@@ -21,7 +19,7 @@ export class MusicalSearchComponent implements OnInit {
   showExtraFilters: boolean = false;
   artistFilter: boolean = true;
   albumFilter: boolean = true;
-  
+
   genres: string[] = Object.values(Genres);
 
   constructor(private musicalService: MusicalService, private fb: FormBuilder) {
@@ -33,15 +31,19 @@ export class MusicalSearchComponent implements OnInit {
    }
   
   ngOnInit(): void {
+    this.loadMusicals();
+    this.searchForm.controls.searchName.setValue('');
+  }
+
+  private loadMusicals() {
     const filteredMusicals = combineLatest([this.musicalService.getMusicals(), this.searchForm.valueChanges])
-      .pipe(map(([musicals, searchFilters]) => 
-         this.applyFilters(musicals, searchFilters)
-      ));
-      
+    .pipe(map(([musicals, searchFilters]) => 
+       this.applyFilters(musicals, searchFilters)
+    ));
+
     filteredMusicals.subscribe(musicals => {
       this.musicals.emit(musicals);
     });
-    this.searchForm.controls.searchName.setValue('');
   }
 
   private applyFilters(musicals: Musical[], filters): Musical[] {
