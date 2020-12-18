@@ -1,0 +1,24 @@
+<ng-container [formGroup]="musicalForm">
+    <div class="row mt-2 border-top">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="font-weight-bold" for="musicalYear">Birth date</label>
+                <input [readonly]="!isEditMode" type="date" class="form-control" id="musicalYear"
+                    formControlName="birthDate" placeholder="Enter the birth date...">
+                <small *ngIf="isEditMode && musicalForm.controls.birthDate.hasError('wrongDate')" class="text-danger">
+                    Artist from the future, uh?
+                </small>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label class="font-weight-bold" for="musicalYear">Death date</label>
+                <input [readonly]="!isEditMode" type="date" class="form-control" id="musicalYear"
+                    formControlName="deathDate" placeholder="Enter the death date...">
+                <small *ngIf="isEditMode && musicalForm.controls.deathDate.hasError('wrongDate')" class="text-danger">
+                    Should I call the cops?
+                </small>
+            </div>
+        </div>
+    </div>
+</ng-container>
