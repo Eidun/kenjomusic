@@ -12,6 +12,8 @@ import { MusicalComponent } from './components/musical/musical.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MusicalModalComponent } from './components/musical-modal/musical-modal.component';
+import { AlbumModalComponent } from './components/album-modal/album-modal.component';
+import { MusicalModalFooterComponent } from './components/musical-modal-footer/musical-modal-footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MusicalModalComponent } from './components/musical-modal/musical-modal.
     MusicalSearchComponent,
     MusicalComponent,
     FooterComponent,
-    MusicalModalComponent
+    MusicalModalComponent,
+    AlbumModalComponent,
+    MusicalModalFooterComponent
   ],
   imports: [
     BrowserModule,
