@@ -6,7 +6,7 @@
                 <input [readonly]="!isEditMode" type="date" class="form-control" id="musicalYear"
                     formControlName="birthDate" placeholder="Enter the birth date...">
                 <small *ngIf="isEditMode && musicalForm.controls.birthDate.hasError('wrongDate')" class="text-danger">
-                    Artist from the future, uh?
+                    Artist from the future, huh?
                 </small>
             </div>
         </div>

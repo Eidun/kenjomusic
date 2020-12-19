@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestModule } from 'src/app/app.test.module';
 
 import { MusicalSearchComponent } from './musical-search.component';
 
@@ -8,6 +9,7 @@ describe('MusicalSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TestModule],
       declarations: [ MusicalSearchComponent ]
     })
     .compileComponents();
