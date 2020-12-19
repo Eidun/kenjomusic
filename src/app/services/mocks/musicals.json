@@ -1,0 +1,59 @@
+[
+    {
+        "_id": "5fd9e1f0fdfc00001b46999c",
+        "title": "Bad boys",
+        "coverUrl": "https://i.pinimg.com/originals/3a/f0/e5/3af0e55ea66ea69e35145fb108b4a636.jpg",
+        "_createdAt": "2020-12-16T10:31:12.822Z",
+        "_updatedAt": "2020-12-18T17:06:35.718Z",
+        "__v": 0,
+        "artistId": "5fd870b50daead00133bca9a",
+        "genre": ""
+    },
+    {
+        "_id": "5fd9f4f5fdfc00001b46999e",
+        "title": "Havana",
+        "coverUrl": "https://cdnb.artstation.com/p/assets/images/images/008/182/951/large/daanesh-bhathena-havana.jpg?1511017220",
+        "genre": "Country",
+        "artistId": "5fd870b50daead00133bca9a",
+        "_createdAt": "2020-12-16T11:52:21.413Z",
+        "_updatedAt": "2020-12-18T12:50:31.605Z",
+        "__v": 0
+    },
+    {
+        "_id": "5fdb4ed0855beb0013ff471c",
+        "title": "Kill Them All",
+        "coverUrl": "https://preview.redd.it/hyxqmlnrvx241.jpg?width=1000&format=pjpg&auto=webp&s=214a4f147854b3a143044345506473231b172c56",
+        "genre": "Metal",
+        "artistId": "5fdb4e74855beb0013ff4719",
+        "_createdAt": "2020-12-17T12:28:00.103Z",
+        "_updatedAt": "2020-12-17T17:10:15.335Z",
+        "__v": 0
+    },
+    {
+        "_id": "5fd9e168fdfc00001b46999b",
+        "title": "Pain tal",
+        "coverUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artistic-album-cover-design-template-d12ef0296af80b58363dc0deef077ecc_screen.jpg?ts=1561488440",
+        "_createdAt": "2020-12-16T10:28:56.365Z",
+        "_updatedAt": "2020-12-16T10:28:56.365Z",
+        "__v": 0
+    },
+    {
+        "_id": "5fd9f298fdfc00001b46999d",
+        "title": "Prism",
+        "coverUrl": "https://img.apmcdn.org/4f25ecdbbd7af5fed833153302515a94c990de11/square/7aacc5-20130508-favorite-album-covers.jpg",
+        "genre": "Rock",
+        "_createdAt": "2020-12-16T11:42:16.981Z",
+        "_updatedAt": "2020-12-16T11:42:16.981Z",
+        "__v": 0
+    },
+    {
+        "_id": "5fdb4e74855beb0013ff4719",
+        "name": "Metallica",
+        "photoUrl": "https://i.pinimg.com/736x/6f/7f/b4/6f7fb441565e17092251e8306997aed1.jpg",
+        "_createdAt": "2020-12-17T12:26:28.842Z",
+        "_updatedAt": "2020-12-18T12:50:02.961Z",
+        "__v": 0,
+        "birthdate": "2020-12-17T00:00:00.000Z",
+        "deathDate": "2020-12-18T00:00:00.000Z"
+    }
+]

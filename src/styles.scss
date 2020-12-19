@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+.btn-kenjo {
+    width: 50px;
+    height: 50px;
+    transition: 0.2s;
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 3px black;
+    }
+}
+
+body {
+    background-color: cadetblue;
+}
+.main-content {
+    min-height: 85vh;
+}

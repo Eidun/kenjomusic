@@ -1,0 +1,11 @@
+<div class="modal-footer">
+    <button *ngIf="!isEditMode" (click)="editMusical()" type="button" class="form-control btn btn-kenjo border">
+        <img class="img-fluid" src="assets/edit.svg"/>
+    </button>
+    <button *ngIf="isEditMode" [disabled]="disabled" (click)="saveMusical()" type="submit" class="form-control btn btn-kenjo border">
+        <img class="img-fluid" src="assets/save.svg"/>
+    </button>
+    <button *ngIf="isEditMode" (click)="deleteMusical()" type="button" class="form-control btn btn-kenjo border">
+        <img class="img-fluid" src="assets/trash.png"/>
+    </button>
+</div>

@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title text-white font-weight-bold">{{musical.type}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <form [formGroup]="musicalForm">       
+            <div class="row d-flex justify-content-center">
+                <div class="col-6">
+                    <img class="card-modal-image" [src]="musicalForm.value.image || 'assets/noimage.png'" alt="...">
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="musicalName">Name*</label>
+                        <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalName"
+                            formControlName="name" placeholder="Enter the name...">
+                        <small *ngIf="isEditMode && musicalForm.controls.name.touched && musicalForm.controls.name.errors" class="text-danger">
+                            The name is required
+                        </small>      
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="musicalImage">Image URL</label>
+                        <input [readonly]="!isEditMode" type="text" class="form-control" id="musicalImage"
+                            formControlName="image" placeholder="Enter the URL...">   
+                    </div>
+                </div>
+            </div>
+            <ng-container *ngIf="musical.type === 'Album'">
+                <kenjo-album-modal [musical]="musical" [musicalForm]="musicalForm" [isEditMode]="isEditMode"></kenjo-album-modal>
+            </ng-container>
+            <ng-container *ngIf="musical.type === 'Artist'">
+                <kenjo-artist-modal [musical]="musical" [musicalForm]="musicalForm" [isEditMode]="isEditMode"></kenjo-artist-modal>
+            </ng-container>
+        </form>
+    </div>
+</div>
+<kenjo-musical-modal-footer [isEditMode]="isEditMode" [disabled]="!musicalForm.valid" (save)="save()" (edit)="editMode()" (delete)="delete()">
+</kenjo-musical-modal-footer>

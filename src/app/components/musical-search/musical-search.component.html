@@ -1,0 +1,46 @@
+<form [formGroup]="searchForm">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-10 d-inline">
+                <input type="text" placeholder="Search by name..." formControlName="searchName" class="form-control-lg w-100 input-grow" />
+            </div>
+            <div class="col-2 d-inline">
+                <button (click)="showExtraFilters=!showExtraFilters" type="button" class="form-control btn btn-kenjo border">
+                    <img class="img-fluid" src="assets/more.png"/>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showExtraFilters" class="form-group border-bottom">
+        <div class="row p-1">
+            <div class="col-md-5 col-sm-10">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <label class="btn btn-dark radio-label" [class.radio-label-active]="albumFilter === artistFilter" 
+                        (click)="albumFilter = true; artistFilter = true;">
+                        <input class="radio-type-active" type="radio" value="" name="type" formControlName="type"> Any
+                    </label>
+                    <label class="btn btn-dark radio-label" [class.radio-label-active]="albumFilter && !artistFilter" 
+                    (click)=" artistFilter = false; albumFilter = true;">
+                        <input class="radio-type" type="radio" value="Album" name="type" formControlName="type"> Albums
+                    </label>
+                    <label class="btn btn-dark radio-label" [class.radio-label-active]="artistFilter && !albumFilter" 
+                    (click)="albumFilter = false; artistFilter = true;">
+                        <input class="radio-type" type="radio" value="Artist" name="type" formControlName="type"> Artists
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-10 mr-2 justify-content-end">
+                <div *ngIf="albumFilter" class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Genre</label>
+                    </div>
+                    <select class="custom-select" formControlName="genre">
+                        <option selected value="">Any</option>
+                        <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</form>
