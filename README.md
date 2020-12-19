@@ -1,6 +1,6 @@
 # 🎵 Kenjomusic
 
-Kenjomusic is a responsive application built with Angular 11 for managing your favorites artists and albums!
+Kenjomusic is a responsive application built with Angular 11 and powered by ng-bootstrap for managing your favorites artists and albums!
 
 ## 📖 Walkthrough
 
